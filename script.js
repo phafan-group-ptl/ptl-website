@@ -329,7 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnShowCorporate.addEventListener('click', () => updateQuotationView('corporate'));
 
         const populateDropdowns = () => {
-            const serviceDropdowns = [document.getElementById('individual-service'), document.getElementById('corporate-service')];
+            const serviceDropdowns = [document.getElementById('individual-service'), document.getElementById('corporate-service'), document.getElementById('meeting-service')];
             const services = {
                 "optgroup_consulting": ["b_reg_partnership", "b_reg_foreign", "b_reg_boi", "b_reg_rep", "b_reg_jv", "b_reg_personal", "b_reg_vat", "b_reg_rd", "b_reg_sso", "b_reg_customs", "b_reg_fda", "b_reg_other"],
                 "optgroup_law": ["law_consulting", "law_contract_drafting", "law_litigation", "law_registration", "law_estate"],
@@ -386,6 +386,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (isMeetingRequest) {
                 data.form_type = 'Online Meeting Request';
+                const serviceDropdown = document.getElementById('meeting-service');
+                const selectedOption = serviceDropdown.options[serviceDropdown.selectedIndex];
+                data.service = selectedOption.value ? translations[currentLang][selectedOption.value] : '';
                 data.fullname = document.getElementById('meeting-name').value;
                 data.email = document.getElementById('meeting-email').value;
                 data.phone = document.getElementById('meeting-phone').value;

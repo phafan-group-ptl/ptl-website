@@ -89,9 +89,9 @@
                         data-key="peak_signin_button">Log in PEAK</a>
                 </li>
                 <li class="lang-switcher">
-                        <a href="#" class="lang-btn" data-lang="th">TH</a>
-                        <span>/</span>
-                        <a href="#" class="lang-btn" data-lang="en">EN</a>
+                    <a href="#" class="lang-btn" data-lang="th">TH</a>
+                    <span>/</span>
+                    <a href="#" class="lang-btn" data-lang="en">EN</a>
                 </li>
             </ul>
 
@@ -215,8 +215,8 @@
                         data-key="form_choice_meeting">นัดประชุมออนไลน์</button>
                 </div>
 
-                <form id="contact-form" action="https://formsubmit.co/phafan@group-ptl.com" method="POST">
-                    <input type="hidden" name="_next" value="https://YOUR-GITHUB-PAGE-URL/thankyou.html">
+                <form id="contact-form">
+                    <!-- <input type="hidden" name="_next" value="https://YOUR-GITHUB-PAGE-URL/thankyou.html"> -->
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" id="form-subject" name="_subject" value="New Quotation Request from Website!">
 
@@ -315,6 +315,10 @@
                     <!-- Meeting Form Fields -->
                     <fieldset id="meeting-fields" class="hidden">
                         <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label for="meeting-service" data-key="form_label_service">บริการที่สนใจ</label>
+                                <select id="meeting-service" name="service"></select>
+                            </div>
                             <div class="form-group">
                                 <label for="meeting-email" data-key="form_label_email">อีเมล</label>
                                 <input type="email" id="meeting-email" name="email">
@@ -334,10 +338,6 @@
                             <div class="form-group full-width">
                                 <label for="meeting-phone" data-key="form_label_phone">เบอร์โทรศัพท์ที่ติดต่อได้</label>
                                 <input type="tel" id="meeting-phone" name="phone">
-                            </div>
-                            <div class="form-group full-width">
-                                <label for="individual-service" data-key="form_label_service">บริการที่สนใจ</label>
-                                <select id="individual-service" name="service"></select>
                             </div>
                         </div>
                     </fieldset>
