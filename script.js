@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Language Translation ---
     const translations = {
         th: {
             site_title: "ที่ปรึกษาบัญชีและกฎหมาย - PTL Achievement",
@@ -40,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
             for_nationality: "รับทำเปลี่ยน/พิสูจน์สัญชาติ",
             for_workpermit: "รับทำใบอนุญาตทำงาน",
             for_labor: "วีซ่าและใบอนุญาตทำงาน (พม่า, ลาว, กัมพูชา)",
-            peak_signin_button: "Sign in to PEAK",
+            peak_signin_button: "Log in PEAK",
             hero_title: "มืออาชีพด้านบัญชีและกฎหมายครบวงจร",
             hero_subtitle: "เราคือผู้ช่วยที่เชื่อถือได้สำหรับธุรกิจของคุณ ตั้งแต่การจดทะเบียนบริษัท ดูแลบัญชี ไปจนถึงการให้คำปรึกษาด้านกฎหมาย",
             hero_button: "ดูบริการของเรา",
@@ -89,7 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
             optgroup_consulting: "งานที่ปรึกษา",
             optgroup_law: "งานกฎหมาย",
             optgroup_accounting: "งานบัญชี",
-            optgroup_foreigner: "งานคนต่างชาติ"
+            optgroup_foreigner: "งานคนต่างชาติ",
+            form_select_default: "--- กรุณาเลือกบริการ ---"
         },
         en: {
             site_title: "Accounting & Legal Consulting - PTL Achievement",
@@ -178,110 +178,111 @@ document.addEventListener('DOMContentLoaded', () => {
             optgroup_consulting: "Consulting Services",
             optgroup_law: "Laws & Attorneys",
             optgroup_accounting: "Accounting Services",
-            optgroup_foreigner: "Foreigner Services"
+            optgroup_foreigner: "Foreigner Services",
+            form_select_default: "--- Please select a service ---"
         }
     };
 
-    const langButtons = document.querySelectorAll('.lang-btn');
-    
+    // --- Language Translation ---
     const setLanguage = (lang) => {
-        // Translate all elements with data-key
         document.querySelectorAll('[data-key]').forEach(element => {
             const key = element.getAttribute('data-key');
-            const translation = translations[lang][key];
-            if (translation !== undefined) {
-                 if (element.tagName === 'TITLE' || element.name === 'description') {
-                    if(element.tagName === 'TITLE') element.textContent = translation;
-                    if(element.tagName === 'META') element.content = translation;
+            if (translations[lang][key]) {
+                if (element.tagName === 'TITLE') {
+                    element.textContent = translations[lang][key];
+                } else if (element.tagName === 'META' && element.name === 'description') {
+                    element.content = translations[lang][key];
                 } else {
-                    element.innerHTML = translation;
+                    element.innerHTML = translations[lang][key];
                 }
             }
         });
 
-        // Translate all placeholders
-        document.querySelectorAll('[data-key-placeholder]').forEach(element => {
-            const key = element.getAttribute('data-key-placeholder');
-            const translation = translations[lang][key];
-             if (translation !== undefined) {
-                element.placeholder = translation;
-            }
-        });
-        
-        // Translate all optgroup labels
-        document.querySelectorAll('[data-key-label]').forEach(element => {
-            const key = element.getAttribute('data-key-label');
-            const translation = translations[lang][key];
-            if(translation !== undefined) {
-                element.label = translation;
-            }
-        });
-
         document.documentElement.lang = lang;
-
-        langButtons.forEach(btn => {
-            btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-        });
-
         localStorage.setItem('language', lang);
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
     };
 
-    langButtons.forEach(button => {
+    document.querySelectorAll('.lang-btn').forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
-            const selectedLang = button.getAttribute('data-lang');
+            const selectedLang = button.dataset.lang;
             setLanguage(selectedLang);
+            populateDropdowns(); // Re-populate dropdowns after language change
         });
     });
+
 
     // --- Mobile Navigation ---
     const burger = document.querySelector('.burger');
-    const navLinks = document.querySelector('.nav-links');
-    
-    burger.addEventListener('click', () => {
-        navLinks.classList.toggle('nav-active');
-        burger.querySelector('i').classList.toggle('fa-bars');
-        burger.querySelector('i').classList.toggle('fa-times');
+    const nav = document.querySelector('.nav-links');
+    const navLinks = nav.querySelectorAll('a');
+
+    const toggleNav = () => {
+        const isActive = nav.classList.toggle('nav-active');
+        burger.querySelector('i').classList.toggle('fa-bars', !isActive);
+        burger.querySelector('i').classList.toggle('fa-times', isActive);
+        document.body.classList.toggle('no-scroll', isActive);
+    };
+
+    burger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleNav();
     });
 
-    const dropdowns = navLinks.querySelectorAll('.dropdown > a');
-    dropdowns.forEach(dropdown => {
-        dropdown.addEventListener('click', (e) => {
-            if (window.innerWidth <= 1100) {
-                e.preventDefault();
-                dropdown.parentElement.classList.toggle('open');
+    // Close nav when a link is clicked
+    navLinks.forEach(link => {
+        // Handle dropdown clicks on mobile
+        if (link.parentElement.classList.contains('dropdown')) {
+            link.addEventListener('click', (e) => {
+                if (window.innerWidth <= 1100) {
+                    e.preventDefault();
+                    link.parentElement.classList.toggle('open');
+                }
+            });
+        } else {
+            // Handle regular link clicks
+            link.addEventListener('click', () => {
+                if (nav.classList.contains('nav-active')) {
+                    toggleNav();
+                }
+            });
+        }
+    });
+
+    // Close dropdowns when clicking sub-menu items
+    nav.querySelectorAll('.dropdown-menu a').forEach(subLink => {
+        subLink.addEventListener('click', () => {
+            if (nav.classList.contains('nav-active')) {
+                toggleNav();
             }
         });
     });
 
-    navLinks.addEventListener('click', (e) => {
-        if (window.innerWidth <= 1100 && e.target.tagName === 'A' && !e.target.closest('.dropdown')) {
-             navLinks.classList.remove('nav-active');
-             burger.querySelector('i').classList.replace('fa-times', 'fa-bars');
-        }
-    });
 
     // --- Contact Form Logic ---
     const contactForm = document.getElementById('contact-form');
-    if(contactForm) {
-        // !! IMPORTANT !! PASTE YOUR GOOGLE APPS SCRIPT URL HERE
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbySi7aktczObCzIOU5YRKEH17dwpeUEhPTGq3waR3bSzAamWNqqKYFsEVXZawt5Mrqg/exec"; 
+    if (contactForm) {
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbySi7aktczObCzIOU5YRKEH17dwpeUEhPTGq3waR3bSzAamWNqqKYFsEVXZawt5Mrqg/exec";
 
         const btnShowQuotation = document.getElementById('btn-show-quotation');
         const btnShowMeeting = document.getElementById('btn-show-meeting');
         const quotationFields = document.getElementById('quotation-fields');
         const meetingFields = document.getElementById('meeting-fields');
-        
+
         const btnShowIndividual = document.getElementById('btn-show-individual');
         const btnShowCorporate = document.getElementById('btn-show-corporate');
         const individualFormFields = document.getElementById('individual-form-fields');
         const corporateFormFields = document.getElementById('corporate-form-fields');
 
-        const setRequired = (fieldset, required) => {
+        const setRequired = (fieldset, isRequired) => {
             fieldset.querySelectorAll('input, select').forEach(input => {
-                const requiredFields = ['occupation', 'fullname', 'country', 'email', 'service', 'meeting_time_1', 'meeting_time_2', 'meeting_time_3', 'meeting_time_4', 'company_name'];
-                if(requiredFields.includes(input.name)) {
-                     input.required = required;
+                const requiredFields = ['fullname', 'email', 'service', 'meeting_time_1'];
+                if (requiredFields.includes(input.name) || (isRequired && input.type !== 'tel' && input.type !== 'checkbox')) {
+                    input.required = isRequired;
                 }
             });
         };
@@ -304,7 +305,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 setRequired(meetingFields, true);
             }
         };
-        
+
         const updateQuotationView = (mode) => {
             if (mode === 'individual') {
                 btnShowIndividual.classList.add('active');
@@ -328,62 +329,68 @@ document.addEventListener('DOMContentLoaded', () => {
         btnShowIndividual.addEventListener('click', () => updateQuotationView('individual'));
         btnShowCorporate.addEventListener('click', () => updateQuotationView('corporate'));
 
-        const populateDropdowns = () => {
-            const serviceDropdowns = [document.getElementById('individual-service'), document.getElementById('corporate-service'), document.getElementById('meeting-service')];
-            const services = {
-                "optgroup_consulting": ["b_reg_partnership", "b_reg_foreign", "b_reg_boi", "b_reg_rep", "b_reg_jv", "b_reg_personal", "b_reg_vat", "b_reg_rd", "b_reg_sso", "b_reg_customs", "b_reg_fda", "b_reg_other"],
-                "optgroup_law": ["law_consulting", "law_contract_drafting", "law_litigation", "law_registration", "law_estate"],
-                "optgroup_accounting": ["acc_closing", "acc_monthly_tax", "acc_monthly_report", "acc_consulting"],
-                "optgroup_foreigner": ["for_visa", "for_resident", "for_nationality", "for_workpermit", "for_labor"]
-            };
-            
-            serviceDropdowns.forEach(dropdown => {
-                if(dropdown) {
-                    while (dropdown.options.length > 0) {
-                        dropdown.remove(0);
-                    }
-                    const placeholder = document.createElement('option');
-                    placeholder.value = "";
-                    placeholder.disabled = true;
-                    placeholder.selected = true;
-                    placeholder.dataset.key = "form_select_default";
-                    dropdown.appendChild(placeholder);
+        // Initial setup
+        updateFormView('quotation');
+    }
 
-                    for (const groupKey in services) {
-                        const optgroup = document.createElement('optgroup');
-                        optgroup.dataset.keyLabel = groupKey;
-                        
-                        services[groupKey].forEach(serviceKey => {
-                            const option = document.createElement('option');
-                            option.value = serviceKey;
-                            option.dataset.key = serviceKey;
-                            optgroup.appendChild(option);
-                        });
-                        dropdown.appendChild(optgroup);
-                    }
-                }
-            });
+    const populateDropdowns = () => {
+        const currentLang = localStorage.getItem('language') || 'th';
+        const serviceDropdowns = document.querySelectorAll('#individual-service, #corporate-service, #meeting-service');
+        const services = {
+            "optgroup_consulting": ["b_reg_partnership", "b_reg_foreign", "b_reg_boi", "b_reg_rep", "b_reg_jv", "b_reg_personal", "b_reg_vat", "b_reg_rd", "b_reg_sso", "b_reg_customs", "b_reg_fda", "b_reg_other"],
+            "optgroup_law": ["law_consulting", "law_contract_drafting", "law_litigation", "law_registration", "law_estate"],
+            "optgroup_accounting": ["acc_closing", "acc_monthly_tax", "acc_monthly_report", "acc_consulting"],
+            "optgroup_foreigner": ["for_visa", "for_resident", "for_nationality", "for_workpermit", "for_labor"]
         };
 
-        populateDropdowns();
-        const savedLang = localStorage.getItem('language') || 'th';
-        setLanguage(savedLang);
+        serviceDropdowns.forEach(dropdown => {
+            if (dropdown) {
+                dropdown.innerHTML = ''; // Clear existing options
 
-        // Form submission
+                // Add placeholder
+                const placeholder = document.createElement('option');
+                placeholder.value = "";
+                placeholder.textContent = translations[currentLang].form_select_default;
+                placeholder.disabled = true;
+                placeholder.selected = true;
+                dropdown.appendChild(placeholder);
+
+                // Add service options
+                for (const groupKey in services) {
+                    const optgroup = document.createElement('optgroup');
+                    optgroup.label = translations[currentLang][groupKey];
+                    services[groupKey].forEach(serviceKey => {
+                        const option = document.createElement('option');
+                        option.value = serviceKey;
+                        option.textContent = translations[currentLang][serviceKey];
+                        optgroup.appendChild(option);
+                    });
+                    dropdown.appendChild(optgroup);
+                }
+            }
+        });
+    };
+
+    // --- Initial Load ---
+    const savedLang = localStorage.getItem('language') || 'th';
+    setLanguage(savedLang);
+    populateDropdowns();
+
+    // Form submission (same as before)
+    if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const form = e.target;
             const submitButton = form.querySelector('button[type="submit"]');
             const currentLang = localStorage.getItem('language') || 'th';
             const isMeetingRequest = !meetingFields.classList.contains('hidden');
-            
+
             const originalButtonText = translations[currentLang].form_button;
             submitButton.disabled = true;
             submitButton.textContent = currentLang === 'th' ? 'กำลังส่ง...' : 'Sending...';
 
-            // *** START: CORRECTED DATA COLLECTION LOGIC ***
             const data = {};
-            
+
             if (isMeetingRequest) {
                 data.form_type = 'Online Meeting Request';
                 const serviceDropdown = document.getElementById('meeting-service');
@@ -424,9 +431,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     data.lawyer_needed = document.getElementById('corporate-lawyer').checked ? 'yes' : 'no';
                 }
             }
-            // *** END: CORRECTED DATA COLLECTION LOGIC ***
-            
-            fetch(SCRIPT_URL, {
+
+            fetch(form.parentElement.querySelector('#SCRIPT_URL').value, {
                 method: 'POST',
                 mode: 'no-cors',
                 headers: {
@@ -434,22 +440,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: JSON.stringify(data)
             })
-            .then(() => {
-                const successMsg = isMeetingRequest 
-                    ? translations[currentLang].alert_meeting_success
-                    : translations[currentLang].alert_quotation_success;
-                alert(successMsg);
-                form.reset();
-                updateFormView('quotation');
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert(currentLang === 'th' ? 'เกิดข้อผิดพลาดในการส่งข้อมูล' : 'There was a problem with your submission.');
-            })
-            .finally(() => {
-                submitButton.disabled = false;
-                submitButton.textContent = originalButtonText;
-            });
+                .then(() => {
+                    const successMsg = isMeetingRequest
+                        ? translations[currentLang].alert_meeting_success
+                        : translations[currentLang].alert_quotation_success;
+                    alert(successMsg);
+                    form.reset();
+                    updateFormView('quotation');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert(currentLang === 'th' ? 'เกิดข้อผิดพลาดในการส่งข้อมูล' : 'There was a problem with your submission.');
+                })
+                .finally(() => {
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalButtonText;
+                });
         });
     }
 });
