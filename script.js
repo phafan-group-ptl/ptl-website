@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Contact Form Logic ---
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbySi7aktczObCzIOU5YRKEH17dwpeUEhPTGq3waR3bSzAamWNqqKYFsEVXZawt5Mrqg/exec";
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxRrRyIn7P2VuqA3hEDBA9Zo9aYAcN0l3jpGlL9asJoSVK1Th0wHF7DQHz6HhRn0LZ6/exec";
 
         const btnShowQuotation = document.getElementById('btn-show-quotation');
         const btnShowMeeting = document.getElementById('btn-show-meeting');
@@ -459,3 +459,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
