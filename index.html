@@ -9,15 +9,20 @@
     <meta name="description" data-key="site_description"
         content="บริการรับทำบัญชี ที่ปรึกษาด้านภาษี กฎหมาย และการจดทะเบียนบริษัทครบวงจร">
 
-    <!-- Google Fonts -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EGEJMLGQ12"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-EGEJMLGQ12'); // <-- !! 중요 !! 여기도 ID를 변경하세요
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- Your Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -216,11 +221,9 @@
                 </div>
 
                 <form id="contact-form">
-                    <!-- <input type="hidden" name="_next" value="https://YOUR-GITHUB-PAGE-URL/thankyou.html"> -->
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" id="form-subject" name="_subject" value="New Quotation Request from Website!">
 
-                    <!-- Quotation Form Fields -->
                     <div id="quotation-fields">
                         <div class="form-choice-buttons secondary-choice">
                             <button type="button" id="btn-show-individual" class="choice-btn active"
@@ -229,7 +232,6 @@
                                 data-key="form_choice_corporate">นิติบุคคล</button>
                         </div>
 
-                        <!-- Individual Form -->
                         <fieldset id="individual-form-fields">
                             <div class="form-grid">
                                 <div class="form-group full-width">
@@ -266,7 +268,6 @@
                             </div>
                         </fieldset>
 
-                        <!-- Corporate Form -->
                         <fieldset id="corporate-form-fields" class="hidden">
                             <div class="form-grid">
                                 <div class="form-group">
@@ -312,7 +313,6 @@
                         </fieldset>
                     </div>
 
-                    <!-- Meeting Form Fields -->
                     <fieldset id="meeting-fields" class="hidden">
                         <div class="form-grid">
                             <div class="form-group full-width">
@@ -375,7 +375,7 @@
                 </div>
                 <div class="map-container">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.9143878663913!2d100.6495924095032!3d13.662969499290902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311d5f000ffbc951%3A0x35e6c40e361aaee2!2sPTL%20Achievement%20co.%2CLtd!5e0!3m2!1sth!2sth!4v1753628079411!5m2!1sth!2sth"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3877.085819958197!2d100.67757987588104!3d13.65406059885854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311d5f5f4f0d7e6f%3A0x8e87396a32e11892!2sPlex%20Bangna!5e0!3m2!1sen!2sth!4v1662970588641!5m2!1sen!2sth"
                         width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
@@ -384,7 +384,7 @@
     </main>
 
     <footer>
-        <p data-key="footer_text">&copy; 2025 PTL Achievement. All Rights Reserved.</p>
+        <p data-key="footer_text">© 2025 PTL Achievement. All Rights Reserved.</p>
     </footer>
 
     <script src="script.js"></script>
