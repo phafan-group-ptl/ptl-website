@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="th">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>เริ่มธุรกิจใหม่ ต้องรู้เรื่องภาษีอะไรบ้าง? | PTL Achievement</title>
+  <meta name="description"
+    content="ภาษีพื้นฐานที่ผู้ประกอบการรายใหม่ควรรู้ — โดย PTL Achievement (บัญชีและกฎหมายครบวงจร)" />
+
+  <!-- Tailwind CSS (สำหรับเนื้อหาบทความ) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Added from index.html for Navbar consistency -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ใช้ Font Sarabun สำหรับเนื้อหาบทความเพื่อให้เข้ากับ Navbar */
+    body.article-page {
+      font-family: 'Sarabun', sans-serif;
+    }
+
+    /* สไตล์สำหรับ Hero Section */
+    .hero-bg {
+      background-image: linear-gradient(180deg, rgba(10, 37, 86, 0.9), rgba(10, 37, 86, 0.95)), url('https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&w=2070&auto-format&fit=crop');
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* สไตล์สำหรับทำให้ลิงก์บทความปัจจุบัน Active */
+    .active-article {
+      color: var(--primary-blue) !important;
+      font-weight: 600;
+      background-color: var(--background-gray);
+    }
+  </style>
+</head>
+
+<body class="antialiased text-gray-800 bg-gray-50 article-page">
+
+  <!-- Header from index.html (with corrected links) -->
+  <header>
+    <nav>
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="PTL Achievement Logo" class="logo-img">
+        <span data-key="company_name">PTL Achievement</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" data-key="nav_home">หน้าหลัก</a></li>
+        <li class="dropdown">
+          <a href="index.html#services" data-key="nav_consulting">งานที่ปรึกษา <i class="fas fa-chevron-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="index.html#contact" data-key="b_reg_partnership">ห้างหุ้นส่วนจำกัด/บริษัทจำกัด</a></li>
+            <li><a href="index.html#contact" data-key="b_reg_foreign">นิติบุคคลต่างชาติ</a></li>
+            <li><a href="index.html#contact" data-key="b_reg_boi">BOI</a></li>
+            <li><a href="index.html#contact" data-key="b_reg_rep">สำนักงานผู้แทน</a></li>
+            <li><a href="index.html#contact" data-key="b_reg_jv">Joint Venture/Consortium</a></li>
+            <li><a href="index.html#contact" data-key="b_reg_personal">ธุรกิจเจ้าของคนเดียว</a></li>
+            <li><a href="index.html#contact" data-key="b_reg_vat">การจดทะเบียนภาษีมูลค่าเพิ่ม</a></li>
+            <li><a href="index.html#contact" data-key="b_reg_rd">การจดทะเบียนรูปแบบอื่นของกรมสรรพากร</a></li>
+            <li><a href="index.html#contact" data-key="b_reg_sso">การขึ้นทะเบียนประกันสังคม</a></li>
+            <li><a href="index.html#contact" data-key="b_reg_customs">การขอใบอนุญาตนำเข้า/CUSTOMS Paperless</a></li>
+            <li><a href="index.html#contact" data-key="b_reg_fda">การขอ อย./FDA and FDA Import License</a></li>
+            <li><a href="index.html#contact" data-key="b_reg_other">การขอใบอนุญาตต่าง ๆ</a></li>
+            <li><a href="index.html#contact" data-key="b_consult_problem">รับปรึกษาปัญหาธุรกิจ</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="index.html#services" data-key="nav_law">งานกฎหมาย <i class="fas fa-chevron-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="index.html#contact" data-key="law_consulting">ปรึกษาคดีความ, ไกล่เกลี่ย, ทำสัญญา</a></li>
+            <li><a href="index.html#contact" data-key="law_contract_drafting">รับทำและตีความสัญญา</a></li>
+            <li><a href="index.html#contact" data-key="law_litigation">รับว่าความทั่วราชอาณาจักร</a></li>
+            <li><a href="index.html#contact" data-key="law_registration">รับจดทะเบียนธุรกิจและใบอนุญาต</a></li>
+            <li><a href="index.html#contact" data-key="law_estate">รับจัดการมรดก</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="index.html#services" data-key="nav_accounting">งานบัญชี <i class="fas fa-chevron-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="index.html#contact" data-key="acc_closing">รับทำบัญชี, ปิดงบ, ตรวจสอบบัญชี</a></li>
+            <li><a href="index.html#contact" data-key="acc_monthly_tax">รับทำบัญชีภาษีอากรรายเดือน</a></li>
+            <li><a href="index.html#contact" data-key="acc_monthly_report">รับทำรายงานทางบัญชี</a></li>
+            <li><a href="index.html#contact" data-key="acc_consulting">รับปรึกษาปัญหาทางบัญชี</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="index.html#services" data-key="nav_foreigner">งานคนต่างชาติ <i class="fas fa-chevron-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="index.html#contact" data-key="for_visa">รับทำวีซ่าสำหรับต่างชาติ</a></li>
+            <li><a href="index.html#contact" data-key="for_resident">รับทำใบต่างชาติ</a></li>
+            <li><a href="index.html#contact" data-key="for_nationality">รับทำเปลี่ยน/พิสูจน์สัญชาติ</a></li>
+            <li><a href="index.html#contact" data-key="for_workpermit">รับทำใบอนุญาตทำงาน</a></li>
+            <li><a href="index.html#contact" data-key="for_labor">วีซ่าและใบอนุญาตทำงาน (เพื่อนบ้าน)</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" data-key="nav_articles">บทความ <i class="fas fa-chevron-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="article1.html" data-key="article_tax_basics" class="active-article">เริ่มธุรกิจใหม่
+                ต้องรู้เรื่องภาษีอะไรบ้าง?</a></li>
+            <li><a href="article2.html">Taxes Foreign Business Owners in Thailand Should Know</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html#about" data-key="nav_about">เกี่ยวกับ</a></li>
+        <li><a href="index.html#contact" data-key="nav_contact">ติดต่อเรา</a></li>
+        <li>
+          <a href="https://www.peakaccount.com" class="cta-button-nav" target="_blank" data-key="peak_signin_button">Log
+            in PEAK</a>
+        </li>
+        <li class="lang-switcher">
+          <a href="#" class="lang-btn" data-lang="th">TH</a>
+          <span>/</span>
+          <a href="#" class="lang-btn" data-lang="en">EN</a>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="burger">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+  <!-- Hero -->
+  <section class="hero-bg text-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
+      <h2 class="text-3xl md:text-5xl font-extrabold leading-tight text-white">เริ่มธุรกิจใหม่ ต้องรู้เรื่องภาษีอะไรบ้าง?</h2>
+      <p class="mt-4 text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">การวางแผนภาษีตั้งแต่วันแรกช่วยให้ธุรกิจราบรื่น
+        ลดค่าใช้จ่ายและหลีกเลี่ยงความเสี่ยงจากการถูกตรวจย้อนหลัง</p>
+      <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+        <a href="#article"
+          class="inline-block bg-white text-blue-900 font-semibold px-8 py-3 rounded-lg shadow hover:bg-gray-100 transition">อ่านบทความ</a>
+        <a href="index.html#contact"
+          class="inline-block border border-white text-white font-semibold px-8 py-3 rounded-lg hover:bg-white hover:text-blue-900 transition">ปรึกษาผู้เชี่ยวชาญ</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main content -->
+  <main id="article" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <article class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+      <p>การเริ่มต้นทำธุรกิจไม่ใช่แค่เรื่องไอเดียหรือการขาย แต่ยังต้องรู้จัก “ภาษี”
+        ซึ่งเป็นสิ่งที่เจ้าของธุรกิจทุกคนหลีกเลี่ยงไม่ได้ การเข้าใจภาษีตั้งแต่ต้นจะช่วยให้คุณวางแผนได้อย่างถูกต้อง
+        ประหยัดค่าใช้จ่าย และลดความเสี่ยงในการทำผิดกฎหมายภาษีโดยไม่รู้ตัว</p>
+
+      <h3 class="mt-8 text-2xl font-bold text-blue-900">5 ภาษีพื้นฐานที่ผู้ประกอบการรายใหม่ควรรู้</h3>
+
+      <section class="mt-6 grid gap-6">
+        <!-- Item 1 to 5 -->
+        <div class="p-6 bg-white rounded-lg shadow-sm border border-gray-200">
+          <div class="flex items-start gap-4">
+            <div
+              class="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full bg-blue-900 text-white font-bold text-xl">
+              1</div>
+            <div>
+              <h4 class="text-xl font-semibold text-gray-900">ภาษีเงินได้บุคคลธรรมดา / นิติบุคคล</h4>
+              <p class="mt-2">ถ้าธุรกิจจดในนามบุคคลธรรมดาต้องยื่นภาษีเงินได้บุคคลธรรมดา (ภ.ง.ด. 94 / 90)
+                หากจดเป็นบริษัทจะต้องยื่นภาษีนิติบุคคล (ภ.ง.ด. 50 / 51) คิดจากกำไรสุทธิหลังหักค่าใช้จ่าย</p>
+              <p class="mt-3 text-sm text-blue-800 bg-blue-50 p-3 rounded-md"><strong>เคล็ดลับ:</strong>
+                ทำบัญชีถูกต้องตั้งแต่ต้น ช่วยคำนวณภาษีแม่นและลดความเสี่ยงการถูกประเมินย้อนหลัง</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 bg-white rounded-lg shadow-sm border border-gray-200">
+          <div class="flex items-start gap-4">
+            <div
+              class="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full bg-blue-900 text-white font-bold text-xl">
+              2</div>
+            <div>
+              <h4 class="text-xl font-semibold text-gray-900">ภาษีมูลค่าเพิ่ม (VAT)</h4>
+              <p class="mt-2">ธุรกิจที่มีรายได้เกิน 1.8 ล้านบาท/ปีต้องจด VAT และยื่นแบบ ภ.พ.30 ทุกเดือน
+                หากต้องการความน่าเชื่อถือ สามารถจด VAT โดยสมัครใจได้</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 bg-white rounded-lg shadow-sm border border-gray-200">
+          <div class="flex items-start gap-4">
+            <div
+              class="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full bg-blue-900 text-white font-bold text-xl">
+              3</div>
+            <div>
+              <h4 class="text-xl font-semibold text-gray-900">ภาษีหัก ณ ที่จ่าย (Withholding Tax)</h4>
+              <p class="mt-2">เมื่อจ่ายค่าจ้าง ค่าบริการ หรือค่าเช่า ต้องหักภาษีไว้ก่อนจ่ายและนำส่งสรรพากร (แบบ ภ.ง.ด.
+                ต่าง ๆ เช่น ภ.ง.ด.3) ตัวอย่าง: จ้างฟรีแลนซ์ 10,000 บาท อาจต้องหัก 3% เป็นภาษี</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 bg-white rounded-lg shadow-sm border border-gray-200">
+          <div class="flex items-start gap-4">
+            <div
+              class="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full bg-blue-900 text-white font-bold text-xl">
+              4</div>
+            <div>
+              <h4 class="text-xl font-semibold text-gray-900">ภาษีป้าย (Signboard Tax)</h4>
+              <p class="mt-2">หากติดป้ายร้านหรือโลโก้ ต้องเสียภาษีป้ายกับเทศบาล/อบต. ทุกปี
+                อัตราแตกต่างตามขนาดและประเภทของป้าย</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 bg-white rounded-lg shadow-sm border border-gray-200">
+          <div class="flex items-start gap-4">
+            <div
+              class="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full bg-blue-900 text-white font-bold text-xl">
+              5</div>
+            <div>
+              <h4 class="text-xl font-semibold text-gray-900">ภาษีธุรกิจเฉพาะ</h4>
+              <p class="mt-2">ภาษีนี้ใช้ในธุรกิจบางประเภท เช่น ธนาคาร การให้เช่าซื้อ หรือการขายอสังหา
+                แม้จะไม่ครอบคลุมทุกธุรกิจ แต่ควรทราบหากทำธุรกิจเฉพาะทาง</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Highlight box -->
+      <div class="mt-10 p-6 bg-blue-50 border-l-4 border-blue-600 rounded-r-lg">
+        <p class="text-blue-900 font-semibold text-lg">สรุป:</p>
+        <p class="mt-2">เจ้าของธุรกิจใหม่ควรทำความเข้าใจภาษีพื้นฐานเหล่านี้ตั้งแต่วันแรก
+          เพื่อให้การดำเนินธุรกิจราบรื่น ถูกต้องตามกฎหมาย และพร้อมขยายต่อไปอย่างยั่งยืน</p>
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-12 grid md:grid-cols-2 gap-6">
+        <div class="p-6 bg-white rounded-lg shadow-sm border border-gray-200">
+          <h4 class="text-xl font-semibold text-gray-900">ต้องการคำปรึกษาแบบตัวต่อตัว?</h4>
+          <p class="mt-2">ทีมผู้เชี่ยวชาญด้านบัญชีและกฎหมายของ <strong>PTL Achievement</strong>
+            พร้อมให้บริการตั้งแต่จดทะเบียนบริษัท วางระบบบัญชี ไปจนถึงวางแผนภาษีและการป้องกันความเสี่ยง</p>
+          <div class="mt-4">
+            <a href="index.html#contact"
+              class="inline-block bg-blue-800 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-blue-900 transition">นัดปรึกษาฟรี</a>
+          </div>
+        </div>
+
+        <div class="p-6 bg-white rounded-lg shadow-sm border border-gray-200">
+          <h4 class="text-xl font-semibold text-gray-900">ติดต่อเรา</h4>
+          <ul class="mt-3 space-y-2">
+            <li><strong>โทร:</strong> 02 136 2189</li>
+            <li><strong>Line:</strong> <a href="https://lin.ee/NIGlUY3"
+                class="text-blue-700 hover:underline">@651cbzdx</a></li>
+            <li><strong>เว็บไซต์:</strong> <a href="https://www.group-ptl.com"
+                class="text-blue-700 hover:underline">www.group-ptl.com</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="mt-12 p-6 bg-white rounded-lg shadow-sm border border-gray-200">
+        <h4 class="text-xl font-semibold text-gray-900">คำถามที่พบบ่อย (FAQ)</h4>
+        <dl class="mt-4 space-y-4">
+          <div>
+            <dt class="font-semibold">ฟรีแลนซ์ต้องยื่นภาษีไหม?</dt>
+            <dd class="mt-1">ใช่ ต้องยื่นภาษีหากมีรายได้ถึงเกณฑ์ตามกฎหมาย
+              และควรเก็บหลักฐานการรับเงินเพื่อใช้หักค่าใช้จ่ายหรือยื่นภาษี</dd>
+          </div>
+          <div>
+            <dt class="font-semibold">ควรจดเป็นบริษัทหรือรายบุคคล?</dt>
+            <dd class="mt-1">ขึ้นอยู่กับขนาดกิจการ แผนขยาย และประเด็นภาษี/ความรับผิดชอบทางกฎหมาย
+              ทีมเราช่วยประเมินและแนะนำได้</dd>
+          </div>
+        </dl>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer from index.html -->
+  <footer>
+    <p data-key="footer_text">© 2025 PTL Achievement. สงวนลิขสิทธิ์.</p>
+  </footer>
+
+  <!-- Floating contact buttons from index.html -->
+  <div class="floating-contact">
+    <a href="https://m.me/61582394972373" class="fab messenger" target="_blank" aria-label="Chat on Messenger">
+      <i class="fab fa-facebook-messenger"></i>
+    </a>
+    <a href="https://lin.ee/NIGlUY3" class="fab line" target="_blank" aria-label="Add us on LINE">
+      <i class="fab fa-line"></i>
+    </a>
+    <a href="https://wa.me/66656090428" class="fab whatsapp" target="_blank" aria-label="Chat on WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- Scripts from index.html to make mobile menu work -->
+  <script src="script.js"></script>
+
+</body>
+
+</html>
