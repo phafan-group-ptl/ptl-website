@@ -769,6 +769,10 @@ body.no-scroll {
     background-color: #25D366; /* สีเขียวของ WhatsApp */
 }
 
+.fab.messenger {
+    background-color: #1692e6;
+}
+
 /* ทำให้ปุ่มเล็กลงในหน้าจอมือถือ */
 @media (max-width: 768px) {
     .floating-contact {
@@ -785,3 +789,4 @@ body.no-scroll {
         font-size: 1.8rem;
     }
 }
+
